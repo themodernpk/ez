@@ -13,15 +13,17 @@ class EaseServiceRequest extends Eloquent
 
     protected $fillable = [
         'ease_seeker_id',
+        'ease_service_id',
         'service_id',
         'number_of_provider',
-        'profession_level_id',
+        'profession_level',
         'start_time',
         'end_time',
         'duration',
         'ease_country_id',
         'lat',
         'lng',
+        'city',
         'price',
         'is_scheduled',
         'status',
@@ -33,10 +35,10 @@ class EaseServiceRequest extends Eloquent
         'modified_at',
         'deleted_at',
     ];
-    public static $prefix = 'ease-country';
-    public static $table_name = 'ease_countries';
-    public static $model = 'EaseCountry';
-    public static $view = 'ease::country.';
+    public static $prefix = 'ease-servicerequest';
+    public static $table_name = 'ease_service_requests';
+    public static $model = 'EaseServiceRequest';
+    public static $view = 'ease::servicerequest.';
     public static $rows = 25;
     public static $enable = false;
     public static $executor = true;
@@ -45,7 +47,7 @@ class EaseServiceRequest extends Eloquent
     public static function create_rules()
     {
         return [
-            'name' => 'required',
+            /*'name' => 'required',*/
         ];
     }
     //------------------------------------------------------------
@@ -166,14 +168,17 @@ class EaseServiceRequest extends Eloquent
         //--------------------------------------------------------
         $columns = [
             'ease_seeker_id',
+            'ease_service_id',
             'service_id',
             'number_of_provider',
-            'profession_level_id',
+            'profession_level',
             'start_time',
             'end_time',
             'duration',
             'ease_country_id',
-            'lat_lng_seeker',
+            'lat',
+            'lng',
+            'city',
             'price',
             'is_scheduled',
             'status',

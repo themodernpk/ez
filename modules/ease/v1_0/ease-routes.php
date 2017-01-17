@@ -253,3 +253,11 @@ Route::group(array('before' => 'auth', 'prefix' => 'ease-admin'), function () {
     });
 });
 //=========================================================================================================================
+Route::group(array('prefix' => 'servicerequest'), function () {
+    Route::get('/index', array('as' => 'ease-servicerequest-index', 'uses' => 'EaseServiceRequestController@index'));
+    Route::any('/create', array('as' => 'ease-servicerequest-create', 'uses' => 'EaseServiceRequestController@create'));
+    Route::any('/read/{_id?}', array('as' => 'ease-servicerequest-read', 'uses' => 'EaseServiceRequestController@read'));
+    Route::any('/update/{_id?}', array('as' => 'ease-servicerequest-update', 'uses' => 'EaseServiceRequestController@update'));
+    Route::any('/delete/{_id?}', array('as' => 'ease-servicerequest-delete', 'uses' => 'EaseServiceRequestController@delete'));
+    Route::any('/bulk/action', array('as' => 'ease-servicerequest-bulk-action', 'uses' => 'EaseServiceRequestController@bulkAction'));
+});

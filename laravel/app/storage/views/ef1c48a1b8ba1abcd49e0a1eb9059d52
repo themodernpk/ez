@@ -1,0 +1,73 @@
+<tr>
+    <td><?php echo $item->ease_seeker_id; ?></td>
+    <td><?php echo $item->number_of_provider; ?></td>
+    <td><?php echo $item->profession_level; ?></td>
+    <td><?php echo $item->start_time; ?></td>
+    <td><?php echo $item->duration; ?></td>
+    <td><?php echo $item->ease_country_id; ?></td>
+    <td><?php echo $item->ease_service_id; ?></td>
+    <td><?php echo $item->price; ?></td>
+    <td><?php echo $item->status; ?></td>
+    <td><?php echo $item->city; ?></td>
+    <td>
+        <span data-toggle="tooltip" data-placement="top" data-original-title="View">
+                        <a class="btn btn-sm btn-icon btn-circle btn-info viewItem"
+                           data-toggle="modal"
+                           data-pk="<?php echo $item->id; ?>"
+                           data-href="<?php echo URL::route($data->prefix.'-read',
+                           array('id' => $item->_id, 'format' => 'json')); ?>"
+                           data-target="#ModalView">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                       </span>
+    </td>
+    <?php if(Permission::check($data->prefix.'-update')): ?>
+        <td>
+            <?php if($item->enable == 1): ?>
+
+                <input type="checkbox" data-render="switchery" class="BSswitch"
+                       data-theme="green" checked="checked" data-switchery="true"
+                       data-pk="<?php echo $item->id; ?>"
+                       data-href="<?php echo URL::route($data->prefix.'-bulk-action'); ?>?action=disable&format=json"
+                       style="display: none;">
+            <?php else: ?>
+
+                <input type="checkbox" data-render="switchery" class="BSswitch"
+                       data-theme="green" data-switchery="true"
+                       data-pk="<?php echo $item->id; ?>"
+                       data-href="<?php echo URL::route($data->prefix.'-bulk-action'); ?>?action=enable&format=json"
+                       style="display: none;">
+
+            <?php endif; ?>
+        </td>
+        <td>
+            <?php if(Permission::check($data->prefix.'-update')): ?>
+                <span data-toggle="tooltip" data-placement="top" data-original-title="Update">
+                                            <a class="btn btn-sm btn-icon btn-circle btn-info updateItem"
+                                               data-toggle="modal"
+                                               data-pk="<?php echo $item->id; ?>"
+                                               data-href="<?php echo URL::route($data->prefix.'-read',
+                                               array('id' => $item->id, 'format' => 'json')); ?>"
+                                               data-target="#ModalUpdate">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                            </span>
+
+
+            <?php endif; ?>
+
+            <?php if(Permission::check($data->prefix.'-delete')): ?>
+                <span data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+                                            <a class="btn btn-sm btn-icon btn-circle btn-danger ajaxDelete"
+                                               data-pk="<?php echo $item->id; ?>"
+                                               data-href="<?php echo URL::route($data->prefix.'-bulk-action'); ?>?action=delete&format=json">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                           </span>
+            <?php endif; ?>
+        </td>
+
+
+        <td><input class="idCheckbox" type="checkbox" name="id[]" value="<?php echo $item->id; ?>"/></td>
+    <?php endif; ?>
+</tr>

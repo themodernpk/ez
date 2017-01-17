@@ -297,6 +297,28 @@ class EaseApiSeekerController extends BaseController
     //------------------------------------------------------
     //------------------------------------------------------
     function postRaiseServiceRequest() {
+        $input=(Object)Input::all();
+        $apikey = $input->apikey;
+        $user = User::where('apikey',$apikey)->first();
+        $easeUser = EaseUser::where('user_id',$user->id)->first();
+        $easeSeeker = EaseSeeker::where('ease_user_id',$easeUser->_id)->first();
+        $serviceRequest = [];
+        $serviceRequest['ease_seeker_id']=$easeSeeker->_id;
+        $serviceRequest['ease_service_id']=$input->ease_service_id;
+        $serviceRequest['profession_level']=$input->profession_level;
+        $serviceRequest['number_of_provider']=$input->number_of_provider;
+        $serviceRequest['start_time']=$input->start_time;
+        $serviceRequest['duration']=$input->duration;
+        $serviceRequest['ease_country_id']=$input->ease_country_id;
+        if(isset($input->lat)){
+            $serviceRequest['lat']=$input->lat;
+        }
+        if(isset($input->lng)){
+            $serviceRequest['lng']=$input->lng;
+        }
+        $serviceRequest['price']=$input->price;
+        $serviceRequest['status']="not_started";
+        $serviceRequest['city']=$input->city;
         $this->beforeFilter(function () {
             if (!Permission::check($this->data->prefix . '-create')) {
                 $error_message = "You don't have permission create";
@@ -310,7 +332,7 @@ class EaseApiSeekerController extends BaseController
                 }
             }
         });
-        $response = EaseServiceRequest::store();
+        $response = EaseServiceRequest::store($serviceRequest);
         echo json_encode($response);
         die();
     }

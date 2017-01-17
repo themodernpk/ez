@@ -80,6 +80,11 @@
                                 class="fa fa-exchange"></i> Reviews</a></li>
             @endif
 
+            @if(Permission::check('ease-servicerequest-read'))
+                <li @if(Request::is('servicerequest/index')) class="active" @endif ><a href="{{URL::route('ease-servicerequest-index')}}"><i
+                                class="fa fa-exchange"></i>Service Request</a></li>
+            @endif
+
                 {{--@if(Permission::check('ease-user-read'))
                     <li @if(Request::is('user/index')) class="active" @endif ><a href="{{URL::route('ease-user-index')}}"><i
                                     class="fa fa-exchange"></i> Ease Users</a></li>

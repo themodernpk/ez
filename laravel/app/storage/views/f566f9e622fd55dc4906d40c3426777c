@@ -80,6 +80,11 @@
                                 class="fa fa-exchange"></i> Reviews</a></li>
             <?php endif; ?>
 
+            <?php if(Permission::check('ease-servicerequest-read')): ?>
+                <li <?php if(Request::is('servicerequest/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-servicerequest-index'); ?>"><i
+                                class="fa fa-exchange"></i>Service Request</a></li>
+            <?php endif; ?>
+
                 <?php /*<?php if(Permission::check('ease-user-read')): ?>
                     <li <?php if(Request::is('user/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-user-index'); ?>"><i
                                     class="fa fa-exchange"></i> Ease Users</a></li>
