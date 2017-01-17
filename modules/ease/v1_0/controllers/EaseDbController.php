@@ -46,6 +46,7 @@ class EaseDbController extends BaseController
                 $table->integer('number_of_reviews')->unsigned()->nullable();
                 $table->String('national_iqama_id')->nullable();
                 $table->String('email_verification_code')->nullable();
+                $table->String('email_status')->nullable();
                 $table->String('mobile_verification_code')->nullable();
 
                 $table->integer('created_by')->unsigned()->nullable();

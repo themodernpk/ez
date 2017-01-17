@@ -36,27 +36,29 @@ class EaseApiPublicController extends BaseController
                 $easeUserId= EaseUser::where('user_id',$id)->get();
                 //$ease_user_id is the column field of EaseUser
                 $approved= $easeUserId[0]->verified;
+                $is_email_verified=$easeUserId[0]->email_status;
                 $ease_user_id = $easeUserId[0]->_id;
                 //geting user from verification table
                 $easeUserId= EaseUserVerification::where('ease_user_id',$ease_user_id)->get();
                 //$ease_user_id is the column field of EaseUser
                 $is_email_verified= $easeUserId[0]->email;
-                if(!$is_email_verified) {
+                if($is_email_verified!=="true") {
                     $response['verification_status']="VerificationEmailPending";
                 }
-                $document_status = $easeUserId[0]->documents;
+                //$document_status = $easeUserId[0]->documents;
                 if($is_email_verified && $approved="resend") {
                     $response['verification_status']="VerificationDocPending";
                 }
-                if($is_email_verified && $document_status=="approved" && $approved =="false"){
+                if($is_email_verified && $approved =="false"){
                     $response['verification_status']="VerificationDocDenied";
                 }
-                if($is_email_verified && $document_status=="approved" && $approved==true){
+                if($is_email_verified && $approved=="true"){
                     $response['verification_status']="VerificationDocApproved";
                 }
+                $response['status']="success";
                 $response['user-type']='provider';
                 $response['apikey']=$apikey;
-                $response['name']=$name;
+                $response['user-name']=$name;
                 $response['is_approved'] = $approved;
                 return json_encode($response);
 
@@ -66,30 +68,28 @@ class EaseApiPublicController extends BaseController
                 $easeUserId= EaseUser::where('user_id',$id)->get();
                 //$ease_user_id is the column field of EaseUser
                 $approved= $easeUserId[0]->verified;
-                $ease_user_id = $easeUserId[0]->_id;
-                //geting user from verification table
-                $easeUserId= EaseUserVerification::where('ease_user_id',$ease_user_id)->get();
-                //$ease_user_id is the column field of EaseUser
-                $is_email_verified= $easeUserId[0]->email;
-                $document_status = $easeUserId[0]->documents;
+
+                $is_email_verified= $easeUserId[0]->email_status;
+                //$document_status = $easeUserId[0]->documents;
                 $response['user-type']='seeker';
                 //$response['is_approved'] = $approved;
-                if(!$is_email_verified) {
+                if($is_email_verified !=="true") {
                     $response['verification_status']="VerificationEmailPending";
                 }
                 $document_status = $easeUserId[0]->documents;
-                if($is_email_verified && $approved=="resend") {
+                if($is_email_verified=="true" && $approved=="resend") {
                     $response['verification_status']="VerificationDocPending";
                 }
-                if($is_email_verified && $document_status=="approved" && $approved=="false"){
+                if($is_email_verified=="true" && $approved=="false" && $approved=="false"){
                     $response['verification_status']="VerificationDocDenied";
                 }
-                if($is_email_verified && $document_status=="approved" && $approved=="true"){
+                if($is_email_verified=="true" && $approved=="true"){
                     $response['verification_status']="VerificationDocApproved";
                 }
+                $response['status']="success";
                 $response['is_approved'] = $approved;
                 $response['apikey']=$apikey;
-                $response['name']=$name;
+                $response['user-name']=$name;
                 return json_encode($response);
 
             }

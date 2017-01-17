@@ -1,0 +1,31 @@
+<!--modal-->
+<?php echo HtmlHelper::modal(array('title' => "Update Details", 'modal_id'=>"ModalUpdate")); ?>
+
+
+<?php echo Form::open(array('class' =>'form form-horizontal', 'route' => $data->prefix.'-update',
+'id'=>'formUpdate' ,'method' =>'POST', 'data-parsley-validate')); ?>
+
+<!--modal body-->
+<div class="modal-body">
+<?php echo $__env->make($data->settings->view.'elements.form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+<!--/modal body-->
+<br clear="all"/>
+<div class="modal-footer">
+
+    <button type="submit" id="group_submit"
+            class="btn btn-sm btn-success loader"><i class="fa fa-save"></i> Submit
+    </button>
+
+</div>
+<?php echo Form::hidden('format', 'json'); ?>
+
+<?php echo Form::hidden('_id'); ?>
+
+<?php echo Form::close(); ?>
+
+
+
+<?php echo HtmlHelper::modalClose(); ?>
+
+<!--/modal-->

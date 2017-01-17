@@ -4,11 +4,14 @@
     <td>{{$item->pending_commission}}</td>
     <td>{{$item->amount_withdrew}}</td>
     <td>{{$item->commission_paid_to_company}}</td>
-    @if($item->verified)
+    @if($item->verified=="true")
         <td>Verified</td>
-    @endif
-    @if(!$item->verified)
+        @endif
+    @if($item->verified=="false")
         <td>Not Verified</td>
+    @endif
+    @if($item->verified=="resend")
+        <td>Image not clear</td>
     @endif
     <td>{{$item->gender}}</td>
     <td>{{$item->rating}}</td>
@@ -30,7 +33,7 @@
                 <img width="50px" height="50px" src="{{$item->profile}}" alt="" />
             </a>
         </td>
-    @endif
+        @endif
     @if(!isset($item->profile))
         <td>no profile</td>
     @endif
@@ -48,24 +51,6 @@
     </td>
     @if(Permission::check($data->prefix.'-update'))
         <td>
-            @if($item->enable == 1)
-
-                <input type="checkbox" data-render="switchery" class="BSswitch"
-                       data-theme="green" checked="checked" data-switchery="true"
-                       data-pk="{{$item->id}}"
-                       data-href="{{URL::route($data->prefix.'-bulk-action')}}?action=disable&format=json"
-                       style="display: none;">
-            @else
-
-                <input type="checkbox" data-render="switchery" class="BSswitch"
-                       data-theme="green" data-switchery="true"
-                       data-pk="{{$item->id}}"
-                       data-href="{{URL::route($data->prefix.'-bulk-action')}}?action=enable&format=json"
-                       style="display: none;">
-
-            @endif
-        </td>
-        <td>
             @if(Permission::check($data->prefix.'-update'))
                 <span data-toggle="tooltip" data-placement="top" data-original-title="Update">
                                             <a class="btn btn-sm btn-icon btn-circle btn-info updateItem"
@@ -77,6 +62,8 @@
                                                 <i class="fa fa-edit"></i>
                                             </a>
                             </span>
+
+
             @endif
 
             @if(Permission::check($data->prefix.'-delete'))
@@ -89,6 +76,8 @@
                                            </span>
             @endif
         </td>
+
+
         <td><input class="idCheckbox" type="checkbox" name="id[]" value="{{$item->id}}"/></td>
     @endif
 </tr>

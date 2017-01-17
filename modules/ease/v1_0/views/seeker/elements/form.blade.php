@@ -53,7 +53,7 @@ $output_file='/public/css/rating.css';
                         <option selected disabled>Choose here</option>
                         <option value ="false">Reject</option>
                         <option value ="true">Verify</option>
-                        <option value ="pending">Image not clear</option>
+                        <option value ="resend">Image not clear</option>
                     </select>
                 </div>
 
@@ -73,16 +73,7 @@ $output_file='/public/css/rating.css';
                     <option value ="5">5</option>
                 </select>
             </div>
-            <div class="form-group col-sm-4">
-                <h4>Profession Level</h4>
-                <label for="sel1">Select level (select one):</label>
-                <select class="form-control" id="sel1" name="profession_level">
-                    <option selected disabled>Choose here</option>
-                    <option value ="Basic">Basic</option>
-                    <option value ="Professional">Professional</option>
-                    <option value ="Advance">Advance</option>
-                </select>
-            </div>
+
 
         </div>
 

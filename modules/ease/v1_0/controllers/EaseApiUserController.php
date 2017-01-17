@@ -173,11 +173,12 @@ class EaseApiUserController extends BaseController
         //checking code
         if($email_verification_code==$otpcode) {
             $verificationInstance = [];
-            $verificationInstance['ease_user_id']=$ease_user[0]->_id;
-            $verificationInstance['email']="true";
-            $res = EaseUserVerification::store($verificationInstance);
+            $verificationInstance['_id']=$ease_user[0]->_id;
+            $verificationInstance['email_status']="true";
+            $res = EaseUser::store($verificationInstance);
             $response = [];
             $response['status']="success";
+            $response['data']=$res;
             return $response;
         }
         $response = [];

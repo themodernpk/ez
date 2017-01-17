@@ -13,6 +13,9 @@
     <?php if($item->verified=="false"): ?>
         <td>Not Verified</td>
     <?php endif; ?>
+    <?php if($item->verified=="resend"): ?>
+        <td>Image not clear</td>
+    <?php endif; ?>
     <td><?php echo $item->cancelletion_amount; ?></td>
     <td><?php echo $item->gender; ?></td>
     <td><?php echo $item->rating; ?></td>

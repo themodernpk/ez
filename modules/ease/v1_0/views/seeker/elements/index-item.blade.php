@@ -13,6 +13,9 @@
     @if($item->verified=="false")
         <td>Not Verified</td>
     @endif
+    @if($item->verified=="resend")
+        <td>Image not clear</td>
+    @endif
     <td>{{$item->cancelletion_amount}}</td>
     <td>{{$item->gender}}</td>
     <td>{{$item->rating}}</td>

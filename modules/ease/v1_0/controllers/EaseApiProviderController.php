@@ -67,6 +67,7 @@ class EaseApiProviderController extends BaseController
         $easeUserInstance['rating']=0;
         $easeUserInstance['wallet']=0;
         $easeUserInstance['number_of_reviews']=0;
+        $easeUserInstance['email_status']="false";
 
         $easeUser = EaseUser::store($easeUserInstance);
 

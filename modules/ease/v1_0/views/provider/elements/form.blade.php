@@ -43,26 +43,43 @@ $output_file='/public/css/rating.css';
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Is Available:</label>
-                    <div class="col-md-9">
-                        {{ Form::text('is_available', null, array('class' => 'form-control ',
-                        'placeholder' => 'Is Available', 'required')) }}
-                    </div>
-                </div>
+            <div class="form-group col-sm-3">
+                <h4>Verification</h4>
+                <label for="sel1">Select Status:</label>
+                <select class="form-control" id="sel1" name="action">
+                    <option selected disabled>Choose here</option>
+                    <option value ="false">Reject</option>
+                    <option value ="true">Verify</option>
+                    <option value ="resend">Image not clear</option>
+                </select>
+            </div>
 
+            <div class="form-group col-sm-3">
+                <h4>Rating</h4>
+                <label for="sel1">Select rating:</label>
+                <select class="form-control" id="sel1" name="rating">
+                    <option selected disabled>Choose here</option>
+                    <option value ="1">1</option>
+                    <option value ="1.5">1.5</option>
+                    <option value ="2">2</option>
+                    <option value ="2.5">2.5</option>
+                    <option value ="3">3</option>
+                    <option value ="3.5">3.5</option>
+                    <option value ="4">4</option>
+                    <option value ="4.5">4.5</option>
+                    <option value ="5">5</option>
+                </select>
+            </div>
 
-            <div class="form-group">
-                <label class="col-md-3 col-sm-4 control-label">Verification Status:</label>
-
-                <div class="col-md-9 col-sm-8">
-                    <div class="radio">
-                        <input type="radio" name="action" value="true" checked>Verify<br>
-                        <input type="radio" name="action" value="false">Reject<br>
-                        <input type="radio" name="action" value="resend">image not clear<br>
-                    </div>
-                </div>
-
+            <div class="form-group col-sm-4">
+                <h4>Profession Level</h4>
+                <label for="sel1">Select level:</label>
+                <select class="form-control" id="sel1" name="profession_level">
+                    <option selected disabled>Choose here</option>
+                    <option value ="Basic">Basic</option>
+                    <option value ="Professional">Professional</option>
+                    <option value ="Advance">Advance</option>
+                </select>
             </div>
 
         </div>

@@ -58,6 +58,7 @@ class EaseApiSeekerController extends BaseController
         $easeUserInstance['national_iqama_id'] = $input->national_iqama_id;
         $easeUserInstance['verified']="false";
         $easeUserInstance['email_verification_code']=$otpcode;
+        $easeUserInstance['email_status']="false";
         if(isset($input->gender)){
             $easeUserInstance['gender']=$input->gender;
         }
@@ -72,8 +73,8 @@ class EaseApiSeekerController extends BaseController
         //storing a particular record in ease_user_verification
         $easeUserVerificationInstance = [];
         $easeUserVerificationInstance['ease_user_id'] = $easeUserId;
-        $easeUserVerificationInstance['mobile']=false;
-        $easeUserVerificationInstance['email']=false;
+        $easeUserVerificationInstance['mobile']="false";
+        $easeUserVerificationInstance['email']="false";
         $easeUserVerificationInstance['iqama']="false";
         $easeUserVerificationInstance['documents']="pending";
         $response = EaseUserVerification::store($easeUserVerificationInstance);

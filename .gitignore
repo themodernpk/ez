@@ -1,7 +1,5 @@
 config/
-
 laravel/app/config/
-
 /bootstrap/compiled.php
 /vendor
 
