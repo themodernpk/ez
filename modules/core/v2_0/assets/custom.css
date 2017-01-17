@@ -1,0 +1,120 @@
+/* ****** Code Completed till 10th april */
+
+.slimScrollBar{background-color: #ffcc00 !important; opacity: 0.3 !important; width:8px !important;}
+
+.notifications a{min-width: 250px; white-space:normal  !important;}
+
+.switchery{height: 19px;}
+.switchery>small{width: 18px; height:18px;}
+
+.bwizard{position:relative}.bwizard .well{margin:10px 0 -10px 0}.bwizard-steps{margin:0;padding:0;display:inline-block;background:#fff}.bwizard-steps li{display:inline-block;position:relative;margin-right:5px;line-height:18px;list-style:none;padding:12px 17px 10px 30px;background:#efefef;zoom:1;*display:inline;*padding-left:17px}
+.bwizard-steps li:first-child{-moz-border-radius:4px 0 0 4px;-webkit-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;padding-left:12px}.bwizard-steps li:first-child:before{border:0}
+.bwizard-steps li:last-child{-moz-border-radius:0 4px 4px 0;-webkit-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;margin-right:0}.bwizard-steps li:last-child:after{border:0}
+.bwizard-steps li:before{position:absolute;left:0;top:0;height:0;width:0;border-bottom:20px inset transparent;border-left:20px solid #fff;border-top:20px inset transparent;content:""}
+.bwizard-steps li:after{position:absolute;right:-20px;top:0;height:0;width:0;border-bottom:20px inset transparent;border-left:20px solid #efefef;border-top:20px inset transparent;content:"";z-index:2}
+.bwizard-steps .label{margin:0 5px 0 0;padding:1px 5px 2px;position:relative;top:-1px}.bwizard-steps .active{color:#fff;background:#007acc}.bwizard-steps .active:after{border-left-color:#007acc}
+.bwizard-steps a{color:#333}.bwizard-steps .active a{color:#fff;cursor:default}.bwizard-steps a:hover{text-decoration:none}.bwizard-steps.clickable li:not(.active){cursor:pointer}
+.bwizard-steps.clickable li:hover:not(.active){background:#ccc}.bwizard-steps.clickable li:hover:not(.active) a{color:#08c}.bwizard-steps.clickable li:hover:not(.active):after{border-left-color:#ccc}
+@media(max-width:480px){.bwizard-steps li,.bwizard-steps li.active,.bwizard-steps li:first-child,.bwizard-steps li:last-child{background-color:transparent;padding:0;margin-right:0}
+    .bwizard-steps li:after,.bwizard-steps li:before{border:0}}
+
+
+/* ### For changing the input box of search by column data tables in activity page */
+.filter_row input{   border: 1px solid #ccd0d4;
+  background: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  color: #555;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+.col_id input{ width:30px; }
+
+.ui-autocomplete{z-index: 2000 !important; font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif !important;}
+
+/* ******\ Code Completed till 10th april */
+
+.colorpicker, .datepicker{
+  z-index: 10000000 !important;
+}
+
+.modal-dialog-tiny, .modal-dialog-xs{
+    width: 40%;
+    min-width: 400px;
+}
+
+.modal-dialog-sm{
+    width: 60%;
+    min-width: 400px;
+}
+
+.modal-dialog-md{
+    width: 75%;
+    min-width: 400px;
+}
+
+.modal-dialog-lg{
+    width: 85%;
+    min-width: 400px;
+}
+
+.navbar-brand{width: auto; font-weight: 400;}
+
+.highlight {
+    background-color: #FFFF88;
+}
+
+.wrap {
+    white-space: pre-wrap;      /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap;     /* Opera <7 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    word-wrap: break-word;      /* IE */
+}
+
+.sidebar-user-menu-show{display: none !important;}
+
+@media(max-width:760px){
+    .sidebar-user-menu-show{display: block !important;}
+    .hide-on-sm-device{display: none;}
+    .page-header-fixed{padding-top:60px;}
+}
+
+.autocomplete_loading {
+    background: white url("img/ui-anim_basic_16x16.gif") right center no-repeat;
+}
+
+.datetimepicker{ z-index: 10000 !important; }
+
+
+
+.datetimepicker table tr td.disabled, .datetimepicker table tr td.disabled:hover, .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+    background: #f2f2f2;
+}
+
+.datetimepicker table tr td.today,
+.datetimepicker table tr td.today:hover{
+    background-color: #00ACAC !important;
+}
+
+.datepicker table tr td,
+.datepicker table tr td:hover{
+    cursor: pointer;
+}
+
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th
+{
+    padding: 4px 10px !important;
+}
+
+.coming-soon .coming-soon-header-career
+{
+    background-image: url("img/login-bg/bg-6.jpg");
+    background-size: auto, cover;
+    background-position: left top, center top;
+}
+
+.cursor_normal{
+    cursor: default !important;
+}

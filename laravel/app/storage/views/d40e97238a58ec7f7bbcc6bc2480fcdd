@@ -1,0 +1,29 @@
+<?php $__env->startSection('page_specific_head'); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+    <!-- begin page-header -->
+    <h1 class="page-header"><?php echo $title; ?></h1>
+    <!-- end page-header -->
+
+    <?php $modules = modules_list();
+    foreach($modules as $module)
+    {
+    ?>
+
+    <?php if(View::exists($module.'::extend_core.dashboard')): ?>
+        <?php echo $__env->make($module.'::extend_core.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+
+    <?php
+
+    }
+    ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_specific_foot'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('core::layout.backend', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

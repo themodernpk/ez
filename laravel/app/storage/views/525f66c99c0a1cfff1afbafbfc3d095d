@@ -1,0 +1,27 @@
+<?php if(isset($data['start'])): ?>
+<!-- #modal-dialog -->
+<div class="modal fade" id="<?php echo $data['modal_id']; ?>">
+    <div class="modal-dialog <?php if(isset($data['class'])): ?> <?php echo $data['class']; ?> <?php else: ?> modal-dialog-large <?php endif; ?>">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <div class="pull-right">
+                    <button class="btn btn-icon btn-circle btn-warning modalLoader" style="display: none;">
+                        <i class="fa fa-spin fa-spinner"></i>
+                    </button>
+                    <button type="button" class="btn btn-icon btn-circle btn-danger"
+                            data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i>
+                    </button>
+
+                </div>
+                <?php if(isset($data['title'])): ?>
+                <h4 class="modal-title"><?php echo $data['title']; ?></h4>
+                    <?php endif; ?>
+            </div>
+<?php endif; ?>
+<?php if(isset($data['end'])): ?>
+        </div>
+    </div>
+</div>
+<!-- #end of modal-dialog -->
+<?php endif; ?>

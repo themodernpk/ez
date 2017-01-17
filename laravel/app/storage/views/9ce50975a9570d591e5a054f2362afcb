@@ -1,0 +1,10 @@
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger">
+                <button aria-hidden=true data-dismiss=alert class=close type=button>X</button>
+                <ul>
+                  <?php foreach($errors->all() as $error): ?>
+                  <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+              </ul>
+          </div>
+      <?php endif; ?>

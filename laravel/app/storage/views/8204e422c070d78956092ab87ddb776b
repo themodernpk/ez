@@ -1,0 +1,7 @@
+<li><a href="<?php echo URL::route('account'); ?>">Account</a></li>
+<li><a href="<?php echo URL::route('accountActivities'); ?>">Activities</a></li>
+<li><a href="<?php echo URL::route('notifications'); ?>">Notifications</a></li>
+<li><a href="<?php echo URL::route('profile'); ?>">Profile</a></li>
+<li class="divider"></li>
+<li><a href="<?php echo URL::route('settings'); ?>">Settings</a></li>
+<li><a href="<?php echo route('logout'); ?>" class="text-danger">Logout</a></li>

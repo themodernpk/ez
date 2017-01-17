@@ -1,0 +1,66 @@
+figure, figcaption {
+	display: block;
+}
+
+.transition {
+    -webkit-transition: top 400ms linear;
+    -moz-transition: top 400ms linear;
+    -ms-transition: top 400ms linear;
+    -o-transition: top 400ms linear;
+    transition: top 400ms linear;
+}
+
+.timeTo {
+}
+
+.timeTo span {
+	vertical-align: top;
+}
+
+.timeTo.timeTo-white div {
+}
+.timeTo.timeTo-black div {
+}
+
+.timeTo.timeTo-black .timeTo-alert {
+
+}
+
+.timeTo.timeTo-white .timeTo-alert {
+
+}
+
+.timeTo figure {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.timeTo figcaption {
+
+}
+
+.timeTo div {
+	position: relative;
+	display: inline-block;
+    min-width: 10px;
+	min-height: 10px;
+	overflow: hidden;
+}
+.timeTo div.first {
+}
+
+.timeTo ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+    top: -5px!important;
+    left: 0px !important;
+
+}
+
+.timeTo ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

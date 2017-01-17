@@ -1,0 +1,75 @@
+<li class="<?php if(Request::is('dashboard')): ?> active <?php endif; ?>">
+    <a href="<?php echo URL::route('dashboard'); ?>">
+        <i class="fa fa-dashboard"></i><span>Dashboard</span>
+    </a>
+</li>
+
+<?php if(Permission::check('show-admin-section')): ?>
+    <li class="has-sub <?php if(Request::is('admin/*')): ?> expand <?php endif; ?>">
+        <a href="javascript:;">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-briefcase"></i>
+            <span>Admin v2.0</span>
+        </a>
+        <ul class="sub-menu" style="<?php if(Request::is('admin/*')): ?> display: block; <?php endif; ?>">
+
+
+            <?php if(Permission::check('core-permission-read')): ?>
+            <li <?php if(Request::is('admin/permission/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('core-permission-index'); ?>"><i
+                            class="fa fa-key"></i> Permissions</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('core-group-read')): ?>
+            <li  <?php if(Request::is('admin/group/index')): ?> class="active" <?php endif; ?>><a href="<?php echo URL::route('core-group-index'); ?>"> <i
+                            class="fa fa-slideshare"> </i> Groups</a></li>
+            <?php endif; ?>
+
+
+                <?php if(Permission::check('core-user-read')): ?>
+            <li <?php if(Request::is('admin/user/index')): ?> class="active" <?php endif; ?>><a href="<?php echo URL::route('core-user-index'); ?>"> <i
+                            class="fa fa-users"></i> Users</a></li>
+                <?php endif; ?>
+
+
+            <li class="divider"></li>
+            <?php if(Permission::check('view-activities')): ?>
+                <li <?php if(Request::is('admin/activities/list')): ?> class="active" <?php endif; ?>><a href="<?php echo URL::route('activities'); ?>"><i
+                                class="fa fa-flag"></i> Activities</a></li>
+            <?php endif; ?>
+            <li <?php if(Request::is('admin/modules')): ?> class="active" <?php endif; ?>><a href="<?php echo URL::route('modules'); ?>"><i
+                            class="fa fa-cubes"></i> Modules</a></li>
+
+            <li <?php if(Request::is('admin/setting')): ?> class="active" <?php endif; ?>><a href="<?php echo URL::route('setting'); ?>"><i
+                            class="fa fa-cog"></i> Settings</a></li>
+
+
+        </ul>
+    </li>
+<?php endif; ?>
+
+    <li class="has-sub sidebar-user-menu-show <?php if(Request::is('user/*')): ?> expand <?php endif; ?>">
+        <a href="javascript:;">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-briefcase"></i>
+            <span>My Account</span>
+        </a>
+        <ul class="sub-menu" style="<?php if(Request::is('user/*')): ?> display: block; <?php endif; ?>">
+            <?php
+            $modules = modules_list();
+            foreach($modules as $module)
+            {
+            ?>
+            <?php if(View::exists($module.'::extend_core.usermenu')): ?>
+                <?php echo $__env->make($module.'::extend_core.usermenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php endif; ?>
+            <?php
+            }
+            ?>
+
+
+        </ul>
+    </li>
+
+
+
+

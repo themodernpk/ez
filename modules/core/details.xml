@@ -1,0 +1,7 @@
+<module>
+    <name>Core</name>
+    <version>1.0</version>
+    <developer>Pradeep</developer>
+    <description>This is a core module of application, you should make any change to this module.</description>
+    <date>2015-01-10</date>
+</module>

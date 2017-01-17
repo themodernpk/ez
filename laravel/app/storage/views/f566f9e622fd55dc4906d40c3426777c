@@ -1,0 +1,90 @@
+<?php /*for country*/ ?>
+
+<?php if(Permission::check('ease')): ?>
+    <li  class="has-sub <?php if(Request::is('ease-admin/*')): ?> expand <?php endif; ?>">
+
+        <a href="javascript:;">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-bank"></i>
+            <span>EASE v1.0</span>
+        </a>
+        <ul class="sub-menu" style="<?php if(Request::is('ease-admin/*')): ?> display: block; <?php endif; ?>">
+
+
+            <?php if(Permission::check('ease-country-read')): ?>
+                <li <?php if(Request::is('country/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-country-index'); ?>"><i
+                                class="fa fa-exchange"></i> Countries</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-faq-read')): ?>
+                <li <?php if(Request::is('faq/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-faq-index'); ?>"><i
+                                class="fa fa-exchange"></i> FAQs</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-service-read')): ?>
+                <li <?php if(Request::is('service/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-service-index'); ?>"><i
+                                class="fa fa-exchange"></i> Services</a></li>
+            <?php endif; ?>
+            <?php if(Permission::check('ease-tnc-read')): ?>
+                <li <?php if(Request::is('tnc/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-tnc-index'); ?>"><i
+                                class="fa fa-exchange"></i> T&Cs</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-offer-read')): ?>
+                <li <?php if(Request::is('offer/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-offer-index'); ?>"><i
+                                class="fa fa-exchange"></i> Offers</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-coupon-read')): ?>
+                <li <?php if(Request::is('coupon/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-coupon-index'); ?>"><i
+                                class="fa fa-exchange"></i> Coupons</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-profession-level-read')): ?>
+                <li <?php if(Request::is('profession-level/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-profession-level-index'); ?>"><i
+                                class="fa fa-exchange"></i> Profession levels</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-seeker-read')): ?>
+                <li <?php if(Request::is('seeker/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-seeker-index'); ?>"><i
+                                class="fa fa-exchange"></i> Seekers</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-support-read')): ?>
+                <li <?php if(Request::is('support/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-support-index'); ?>"><i
+                                class="fa fa-exchange"></i> Supports</a></li>
+            <?php endif; ?>
+
+                <?php if(Permission::check('ease-setting-read')): ?>
+                    <li <?php if(Request::is('setting/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-setting-index'); ?>"><i
+                                    class="fa fa-exchange"></i> Settings</a></li>
+                <?php endif; ?>
+
+            <?php if(Permission::check('ease-provider-read')): ?>
+                <li <?php if(Request::is('provider/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-provider-index'); ?>"><i
+                                class="fa fa-exchange"></i> Providers</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-report-issue-read')): ?>
+                <li <?php if(Request::is('report-issue/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-report-issue-index'); ?>"><i
+                                class="fa fa-exchange"></i> Reported issues</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-payment-read')): ?>
+                <li <?php if(Request::is('payment/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-payment-index'); ?>"><i
+                                class="fa fa-exchange"></i> Payments</a></li>
+            <?php endif; ?>
+
+            <?php if(Permission::check('ease-review-read')): ?>
+                <li <?php if(Request::is('review/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-review-index'); ?>"><i
+                                class="fa fa-exchange"></i> Reviews</a></li>
+            <?php endif; ?>
+
+                <?php /*<?php if(Permission::check('ease-user-read')): ?>
+                    <li <?php if(Request::is('user/index')): ?> class="active" <?php endif; ?> ><a href="<?php echo URL::route('ease-user-index'); ?>"><i
+                                    class="fa fa-exchange"></i> Ease Users</a></li>
+                <?php endif; ?>*/ ?>
+
+        </ul>
+    </li>
+<?php endif; ?>
