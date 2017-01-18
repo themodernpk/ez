@@ -7,81 +7,56 @@ class EaseApiServiceRequestController extends BaseController
 
     public function __construct()
     {
-        
-        $this->data->model = $this->settings->model;
+
+        /*$this->data->model = $this->settings->model;
         $this->data->rows = $this->settings->rows;
         $this->data->view = $this->settings->view;
-        $this->data->settings = $this->settings;
+        $this->data->settings = $this->settings;*/
     }
     //-------------------------------------------------------
-    function getServiceRequestListNearBy() {
+    function postServiceRequestListNearBy() {
         $input = (Object)Input::all();
-        $flat = $input->lat;
-        $flng = $input->lng;
+        /*
+         * filter are service nationality not_started number_of_providers city profession_level */
+        $apikey = $input->apikey;
         $city=$input->city;
-        $provider_id = $input->provider_id;
-        $ease_provider=EaseProvider::where('_id',$provider_id)->get();
-
-        $service_with_cities=[];
+        $user = User::where('apikey',$apikey)->first();
+        if($user->group_id != 2){
+            $response=[];
+            $response['status']="failed";
+            $response['data']="you are not a provider";
+            return json_encode($response);
+        }
+        $easeUser = EaseUser::where('user_id',$user->id)->first();
+        $nationality= $easeUser->nationality;
+        if($easeUser->verified=="false"){
+            $response=[];
+            $response['status']="failed";
+            $response['data']="you are not a verified";
+            return json_encode($response);
+        }
+        $easeProvider = EaseProvider::where('ease_user_id',$easeUser->_id)->first();
+        $provider_id = $easeProvider->_id;
+        $profession_level = $easeProvider->profession_level;
+        $easeProviderInstance=[];
+        $easeProviderInstance['_id']=$easeProvider->_id;
+        $easeProviderInstance['is_available']=true;
+        //updating the provider with availability
+        $res = EaseProvider::store($easeProviderInstance);
+        //whereIn('id', array(1, 2, 3));
+        $provider_services = [];
+        $ease_provider_services = EaseProviderService::where('ease_provider_id',$provider_id)->get();
+        foreach($ease_provider_services as $ease_provider_service){
+            array_push($provider_services,$ease_provider_service->ease_service_id);
+        }
+        $country = EaseCountry::where('nationality',$nationality)->first();
+        $ease_country_id = $country->id;
+        $ease_service_requests_filter =  EaseServiceRequest::whereIn('ease_service_id',$provider_services)->where('status','not_started')->where('city',$city)->where('ease_country_id',$ease_country_id)->where('profession_level',$profession_level)->get();
         $serviceRequests=[];
-        $services_with_cities=EaseServiceRequest::where('city',$city)->get();
+        $serviceRequests['status']="success";
+        $serviceRequests['data']=$ease_service_requests_filter;
 
-        //checking if the the service is approved
-        foreach ($services_with_cities as $services_with_city) {
-            $service_city_id = $services_with_city['_id'];
-            $easeProvider_service_requests= EaseProviderServiceRequest::where('_id',$service_city_id)->get();
-            foreach($easeProvider_service_requests as $easeProvider_service_request){
-
-                if($easeProvider_service_request['action']="approved"){
-                    array_push($service_with_cities,$services_with_city);
-                }
-            }
-        }
-        $ease_provider_services = EaseProviderService::where('ease_provider_id',$provider_id)->get();
-
-        foreach ($ease_provider_services as $ease_provider_service){
-            foreach ($service_with_cities as $service_with_city){
-                if($service_with_city['ease_service_id']==$ease_provider_service['ease_service_id']){
-                    if($service_with_city['ease_profession_level_id']==$ease_provider){
-                        array_push($serviceRequests,$service_with_city);
-                    }
-                }
-            }
-        }
-        /*$provider_id = $input->provider_id;
-        $ease_provider_services = EaseProviderService::where('ease_provider_id',$provider_id)->get();
-        $serviceRequests = [];
-        $distance_diameter = EaseSetting::where('name','diameter')->get();*/
-        //the locations variable will be array of four columns lat, lng , _id and the distance with the provider of the service
-        /*$locations= DB::table('service_service_requests')
-            ->select(
-                'lat',
-                'lng',
-                '_id',
-                DB::raw('SQRT(POW(69.1 * (lat - '.$flat.'), 2) +POW(69.1 * ('.$flng.' - lng) * COS(lat / 57.3), 2)) AS distance'));*/
-        //===============================
-        //creating an array to store all the list of service requests
-        //===============================
-        /*$services_provided_by_provider=[];
-        foreach ($ease_provider_services as $ease_provider_service) {
-            array_push($services_provided_by_provider,$ease_provider_service['ease_service_id']);
-        }*/
-        /*//===============================
-        foreach ($locations as $location) {
-            //selecting by provider_id
-            if($location[distance]<$distance_diameter){
-                //if matched then select by service id
-                foreach ($services_provided_by_provider as $r){
-                    $request = EaseServiceRequest::where('_id',$location[_id])->get();
-                    if($request['ease_service_id']==$r){
-                        //if true push in the array
-                        $request = EaseServiceRequest::where('_id',$location[_id])->get()->toJson();
-                        array_push($serviceRequests,$request);
-                    }
-                }
-            }
-        }*/
-        return $serviceRequests;
+        return json_encode($serviceRequests);
     }
     //-------------------------------------------------------
     function postServiceRequestBy() {
