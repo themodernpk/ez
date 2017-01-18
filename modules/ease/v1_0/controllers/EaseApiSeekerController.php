@@ -318,6 +318,7 @@ class EaseApiSeekerController extends BaseController
         }
         $serviceRequest['price']=$input->price;
         $serviceRequest['status']="not_started";
+        $serviceRequest['scheduled']="false";
         $serviceRequest['city']=$input->city;
         $this->beforeFilter(function () {
             if (!Permission::check($this->data->prefix . '-create')) {

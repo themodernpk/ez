@@ -51,7 +51,7 @@ class EaseApiServiceRequestController extends BaseController
         }
         $country = EaseCountry::where('nationality',$nationality)->first();
         $ease_country_id = $country->id;
-        $ease_service_requests_filter =  EaseServiceRequest::whereIn('ease_service_id',$provider_services)->where('status','not_started')->where('city',$city)->where('ease_country_id',$ease_country_id)->where('profession_level',$profession_level)->get();
+        $ease_service_requests_filter =  EaseServiceRequest::whereIn('ease_service_id',$provider_services)->where('scheduled',"false")->where('status','not_started')->where('city',$city)->where('ease_country_id',$ease_country_id)->where('profession_level',$profession_level)->get();
         $serviceRequests=[];
         $serviceRequests['status']="success";
         $serviceRequests['data']=$ease_service_requests_filter;

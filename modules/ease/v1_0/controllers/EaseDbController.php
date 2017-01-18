@@ -537,6 +537,7 @@ class EaseDbController extends BaseController
                 $table->double('lng')->unsigned()->nullable();
                 $table->String('city')->unsigned()->nullable();
                 $table->float('price')->unsigned()->nullable();
+                $table->String('scheduled')->unsigned()->nullable();
                 $table->timestamp('is_scheduled')->unsigned()->nullable();
                 $table->text('status')->unsigned()->nullable();
                 $table->timestamp('changed_at')->unsigned()->nullable();
