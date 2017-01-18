@@ -30,12 +30,14 @@
     <div class="row">
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Seeker</th>
+                <th>Seeker Id</th>
+                <th>Seeker Name</th>
                 <th>Number of providers</th>
                 <th>Profession Level</th>
                 <th>start time</th>
                 <th>duration</th>
-                <th>country</th>
+                <th>country id</th>
+                <th>country name</th>
                 <th>Service</th>
                 <th>price</th>
                 <th>status</th>

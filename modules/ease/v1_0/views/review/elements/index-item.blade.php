@@ -5,6 +5,12 @@
     <td>{{$item->comment}}</td>
     <td>{{$item->comment_on}}</td>
     <td>{{$item->rating}}</td>
+    @if(isset($item->approve))
+        <td>approved</td>
+    @endif
+    @if(!(isset($item->approve)))
+        <td>not approved</td>
+    @endif
     <td>{{$item->ease_service_request_id}}</td>
     <td>
         <span data-toggle="tooltip" data-placement="top" data-original-title="View">

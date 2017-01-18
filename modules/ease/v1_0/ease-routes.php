@@ -36,7 +36,7 @@ Route::post('api/provider/register',array('as' => 'post-register','uses'=>'EaseA
 Route::group(array('before' => 'login','prefix' => 'api/provider'),function() {
     Route::post('/read',array('as' => 'post-provider','uses'=>'EaseApiProviderController@postProvider'));
     Route::post('/update',array('as'=>'post-update-provider','uses'=>'EaseApiProviderController@postUpdateProvider'));
-    Route::post('/accept}',array('as'=>'post-accept-service-request','uses' => 'EaseApiProviderController@postAcceptServiceRequest'));
+    Route::post('/accept',array('as'=>'post-accept-service-request','uses' => 'EaseApiProviderController@postAcceptServiceRequest'));
     Route::post('/{id}/mark-paid/{service_request_id}',array('as'=>'post-mark-paid','uses'=>'EaseApiProviderController@postMarkPaid'));
     Route::post('/{id}/withdraw-payment',array('as'=>'post-withdraw-payment','uses'=>'EaseApiProviderController@postFaq'));
     Route::post('/{id}/pay-commission',array('as'=>'post-pay-commission','uses'=>'EaseApiProviderController@postPayCommission'));
@@ -175,6 +175,7 @@ Route::group(array('before' => 'auth', 'prefix' => 'ease-admin'), function () {
         Route::any('/read/{id?}', array('as' => 'ease-provider-read', 'uses' => 'EaseProviderController@read'));
         Route::any('/readdata', array('as' => 'ease-provider-read-data', 'uses' => 'EaseProviderController@readData'));
         Route::any('/update/{_id?}', array('as' => 'ease-provider-update', 'uses' => 'EaseProviderController@update'));
+        Route::post('/full/update/{id?}', array('as' => 'ease-provider-full-update', 'uses' => 'EaseProviderController@updateFullProvider'));
         Route::any('/delete/{_id?}', array('as' => 'ease-provider-delete', 'uses' => 'EaseProviderController@delete'));
         Route::any('/bulk/action', array('as' => 'ease-provider-bulk-action', 'uses' => 'EaseProviderController@bulkAction'));
     });

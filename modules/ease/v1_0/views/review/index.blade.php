@@ -35,6 +35,7 @@
                 <th>Review To</th>
                 <th>Comment</th>
                 <th>Comment On</th>
+                <th>Approve</th>
                 <th>Rating</th>
                 <th>Ease Service Request Id</th>
                 <th width="30"></th>

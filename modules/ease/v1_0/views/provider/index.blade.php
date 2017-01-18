@@ -32,11 +32,12 @@
             <tr>
                 <th>Name</th>
                 <th>Mobile</th>
-                <th>Pending Commision</th>
+                <th>Pending Commission</th>
                 <th>Amount Withdrew</th>
-                <th>Commision Paid</th>
+                <th>Commission Paid</th>
                 <th>verified</th>
                 <th>gender</th>
+                <th>Profession Level</th>
                 <th>rating</th>
                 <th>wallet</th>
                 <th>national iqama id</th>

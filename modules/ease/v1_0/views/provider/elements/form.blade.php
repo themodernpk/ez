@@ -10,6 +10,14 @@ $output_file='/public/css/rating.css';
                     {{ Form::text('name', null, array('class' => 'form-control ',
                     'placeholder' => 'Name', 'required'))}}
                 </div>
+                <div class="col-md-9">
+                    {{ Form::hidden('ease_user_id', null, array('class' => 'form-control ',
+                    'placeholder' => 'Name', 'required'))}}
+                    <div class="col-md-9">
+                        {{ Form::hidden('email', null, array('class' => 'form-control ',
+                        'placeholder' => 'Name', 'required'))}}
+                    </div>
+                </div>
             </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Mobile:</label>
@@ -33,6 +41,14 @@ $output_file='/public/css/rating.css';
                         {{ Form::text('amount_withdrew', null, array('class' => 'form-control ',
                         'placeholder' => 'Amount Withdrew', 'required')) }}
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Wallet:</label>
+                        <div class="col-md-9">
+                            {{ Form::text('wallet', null, array('class' => 'form-control ',
+                            'placeholder' => 'Wallet', 'required')) }}
+                        </div>
                 </div>
 
                 <div class="form-group">

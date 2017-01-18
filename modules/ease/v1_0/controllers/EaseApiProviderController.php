@@ -406,34 +406,39 @@ class EaseApiProviderController extends BaseController
     function postAcceptServiceRequest() {
 
         $inputt = (object)Input::all();
-        $ease_service_request_id = $inputt->service__id;
-        $ease_provider_id = $inputt->provider_id;
+        $apikey = $inputt->apikey;
+        $user = User::where('apikey',$apikey)->first();
+        if($user->group_id != 2){
+            $response=[];
+            $response['status']="failed";
+            $response['data']="get lost";
+            return $response;
+        }
+        $easeUser = EaseUser::where('user_id',$user->id)->first();
+        if($easeUser->verified != "true"){
+            $response=[];
+            $response['status']="failed";
+            $response['data']="get lost";
+            return $response;
+        }
+
+        $easeProvider = EaseProvider::where('ease_user_id',$easeUser->_id)->first();
+        $ease_service_request_id = $inputt->service_request_id;
+        $ease_provider_id = $easeProvider->_id;
         $input=[];
         $input['lat']=$inputt->lat;
         $input['lng']=$inputt->lng;
         $input['action'] = "approved";
         $input['ease_provider_id']=$ease_provider_id;
         $input['ease_service_request']=$ease_service_request_id;
-
-        $this->beforeFilter(function () {
-            if (!Permission::check($this->data->prefix . '-update')) {
-                $error_message = "You don't have permission update";
-                if (isset($this->data->input->format) && $this->data->input->format == "json") {
-                    $response['status'] = 'failed';
-                    $response['errors'][] = $error_message;
-                    echo json_encode($response);
-                    die();
-                } else {
-                    return Redirect::route('error')->with('flash_error', $error_message);
-                }
-            }
-        });
         //here we have to check if the the required numbers of providers have registered if yes then create a record in the ease_provider_service_request
         $response = EaseProviderServiceRequest::store($input);
-        $providers = EaseProviderServiceRequest::where('ease_service_request_id',$ease_service_request_id)->get();
 
+        $providers = EaseProviderServiceRequest::where('ease_service_request_id',$ease_service_request_id)->get();
         $numberOfProviders = count($providers);
-        $numberOfProvidersNeeded = EaseServiceRequest::where('_id',$ease_service_request_id)->get('number_of_providers');
+
+        $easeServiceRequests = EaseServiceRequest::where('_id',$ease_service_request_id)->first();
+        $numberOfProvidersNeeded=$easeServiceRequests->number_of_provider;
 
         if($numberOfProviders==$numberOfProvidersNeeded) {
             //number of providers equal to query result then mark is scheduled
@@ -454,6 +459,7 @@ class EaseApiProviderController extends BaseController
             $timestamp= Dates::now();
             $addRow = [];
             $addRow['is_scheduled'] = $timestamp;
+            $addRow['scheduled']="true";
             $response = EaseServiceRequest::store($addRow);
             echo json_encode($response);
         }

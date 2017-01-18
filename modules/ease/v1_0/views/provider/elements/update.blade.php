@@ -1,7 +1,7 @@
 <!--modal-->
 {{HtmlHelper::modal(array('title' => "Update Details", 'modal_id'=>"ModalUpdate"))}}
 
-{{ Form::open(array('class' =>'form form-horizontal', 'route' => $data->prefix.'-update',
+{{ Form::open(array('class' =>'form form-horizontal', 'route' => $data->prefix.'-full-update',
 'id'=>'formUpdate' ,'method' =>'POST', 'data-parsley-validate')) }}
 <!--modal body-->
 <div class="modal-body">

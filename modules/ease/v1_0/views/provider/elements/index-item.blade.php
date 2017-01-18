@@ -5,8 +5,8 @@
     <td>{{$item->amount_withdrew}}</td>
     <td>{{$item->commission_paid_to_company}}</td>
     @if($item->verified=="true")
-        <td>Verified</td>
-        @endif
+        <td>verified</td>
+    @endif
     @if($item->verified=="false")
         <td>Not Verified</td>
     @endif
@@ -14,6 +14,11 @@
         <td>Image not clear</td>
     @endif
     <td>{{$item->gender}}</td>
+    @if(empty($item->profession_level))
+        <td>Not Set</td>
+    @else
+        <td>{{$item->profession_level}}</td>
+    @endif
     <td>{{$item->rating}}</td>
     <td>{{$item->wallet}}</td>
     <td>{{$item->national_iqama_id}}</td>
@@ -33,7 +38,7 @@
                 <img width="50px" height="50px" src="{{$item->profile}}" alt="" />
             </a>
         </td>
-        @endif
+    @endif
     @if(!isset($item->profile))
         <td>no profile</td>
     @endif

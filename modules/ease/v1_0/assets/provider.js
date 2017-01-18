@@ -25,6 +25,7 @@
                 Common.ajaxSuccessHandler(response, that, debug);
                 Common.hideSpinner(that);
                 var object = JSON.parse(response);
+                console.log(object);
                 if (object.status == "success") {
                     location.reload();
                 }

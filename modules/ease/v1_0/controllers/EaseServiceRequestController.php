@@ -40,8 +40,27 @@ class EaseServiceRequestController extends BaseController
             if (isset($this->data->input->q) && !empty($this->data->input->q)) {
                 $this->data->list = $this->search();
             } else {
-                $list = $model::orderBy("created_at", "ASC");
-                $this->data->list = $list->paginate($this->data->rows);
+                //$list = $model::orderBy("created_at", "ASC");
+                $list = $model::orderBy("created_at", "ASC")->get();
+                foreach ($list as $item){
+                    $seeker_id = $item->ease_seeker_id;
+                    $seeker = EaseSeeker::where('_id',$seeker_id)->first();
+                    //return $seeker->ease_user_id;
+                    $easeUser = EaseUser::where('_id',$seeker->ease_user_id)->first();
+                    $user=User::where('id',$easeUser->user_id)->first();
+                    $item->seekername=$user->name;
+
+                    $country_id= $item->ease_country_id;
+                    $country =EaseCountry::where('_id',$country_id)->first();
+                    $item->nationality = $country->nationality;
+
+                    $service_id = $item->ease_service_id;
+                    $service = EaseService::where('_id',$service_id)->first();
+                    $item->servicename=$service->name;
+                }
+                $listt=(Array)$list;
+                $this->data->list = Paginator::make($listt,null,$this->data->rows);
+                //$this->data->list = $list->paginate($this->data->rows);
             }
         }
         $this->data->trash_count = $model::getTrashCount();

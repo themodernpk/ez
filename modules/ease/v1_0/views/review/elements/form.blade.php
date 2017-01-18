@@ -43,14 +43,14 @@
                 <div class="col-md-9 col-sm-8">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="enable" value="1" data-parsley-required>
-                            Active
+                            <input type="radio" name="approve" value="true" >
+                            Approve
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="enable" value="0" data-parsley-required >
-                            Deactive
+                            <input type="radio" name="approve" value="false">
+                            DisApprove
                         </label>
                     </div>
                 </div>

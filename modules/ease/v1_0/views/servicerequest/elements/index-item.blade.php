@@ -1,11 +1,13 @@
 <tr>
     <td>{{$item->ease_seeker_id}}</td>
+    <td>{{$item->seekername}}</td>
     <td>{{$item->number_of_provider}}</td>
     <td>{{$item->profession_level}}</td>
     <td>{{$item->start_time}}</td>
     <td>{{$item->duration}}</td>
     <td>{{$item->ease_country_id}}</td>
-    <td>{{$item->ease_service_id}}</td>
+    <td>{{$item->nationality}}</td>
+    <td>{{$item->servicename}}</td>
     <td>{{$item->price}}</td>
     <td>{{$item->status}}</td>
     <td>{{$item->city}}</td>

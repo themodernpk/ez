@@ -50,6 +50,7 @@ class EaseProviderController extends BaseController
                         $list_item->rating=$ease_user->rating;
                         $list_item->wallet=$ease_user->wallet;
                         $list_item->national_iqama_id=$ease_user->national_iqama_id;
+                        $list_item->profession_level=$ease_user->profession_level;
                     }
                     $ease_documents = EaseUploadedDocument::where('ease_user_id',$list_item->_id)->get();
                     if(count($ease_documents) !=0){
@@ -209,12 +210,11 @@ class EaseProviderController extends BaseController
     //------------------------------------------------------
     function updateFullProvider(){
         $input = (Object)Input::all();
-
         $id = $input->ease_user_id;
         $usersEmail = $input->email;
-        $seekerId = EaseProvider::where('ease_user_id',$id)->get();
+        $providerId = EaseProvider::where('ease_user_id',$id)->get();
         $easeProviderInstance= [];
-        $easeProviderInstance['_id']=$seekerId[0]->_id;
+        $easeProviderInstance['_id']=$providerId[0]->_id;
         if(Input::has('amount_withdrew')){
             $easeProviderInstance['amount_withdrew']=$input->amount_withdrew;
         }
@@ -229,14 +229,14 @@ class EaseProviderController extends BaseController
         }
         $seeker = EaseProvider::store($easeProviderInstance);
         //getting EaseProvider instance
-        $easeUserId= EaseProvider::where('_id',$seekerId[0]->_id)->get();
+        $easeUserId= EaseProvider::where('_id',$providerId[0]->_id)->get();
         //$ease_user_id is the column field of EaseProvider
         $ease_user_id= $easeUserId[0]->ease_user_id;
         $user=EaseUser::where('_id',$ease_user_id)->get();
         //$user_id is the user_id column of user
         $user_id=$user[0]->user_id;
         $easeUserInstance = [];
-        $easeUserInstance['_id']=$ease_user_id;
+        $easeUserInstance['_id']=$user[0]->_id;
         if(Input::has('gender')){
             $easeUserInstance['gender']=$input->gender;
         }
@@ -249,49 +249,21 @@ class EaseProviderController extends BaseController
         if(Input::has("wallet")){
             $easeUserInstance['wallet']=$input->wallet;
         }
-        EaseUser::store($easeUserInstance);
+        $res = EaseUser::store($easeUserInstance);
+
         //below is the user instance
-        $user = User::where('id',$user_id)->get();
-        $userid=$user[0]->id;
-        $username=$user[0]->name;
-        $easeUserName=$username;
-        $AUserInstance['email']=$usersEmail;
-        $user = User::where('email',$AUserInstance['email'])->first();
-        $AUserInstance = [];
+        $user = User::where('id',$user_id)->first();
+        $userInstance=[];
+        $userInstance['id']=$user->id;
+
         if(Input::has('name')){
-            $user->name=$input->name;
+            $userInstance['name']=$input->name;
         }
         if(Input::has('mobile')){
-            $user->mobile=$input->mobile;
+            $userInstance['mobile']=$input->mobile;
         }
-        $user->save();
-        if(Input::has('profile')){
-            $documentt = $input->profile;
-            $document="data:image/jpeg;base64,".$documentt;
-            $user = User::where('email',$usersEmail)->first();
-            $userid = $user->id;
-            $username = $user->name;
-            $profile=$userid."_".$username.".jpeg";
-            $filePath = "http://103.196.221.22/php/ease/public/profile/".$profile;
-            $tempdocument = EaseUploadedDocument::where('document_type','profile')->where('ease_user_id',$seekerId[0]->id)->delete();
+        $res = User::store($userInstance);
 
-            $path = public_path();
-            $output_file=$path.'/public/profile/'.$profile;
-            function base64ToImag($document, $output_file) {
-                $file = fopen($output_file, "wb");
-                $data = explode(',', $document);
-                fwrite($file, base64_decode($data[1]));
-                fclose($file);
-                return $output_file;
-            }
-            base64ToImag($document,$output_file);
-            $easeUploadedDocumentInstance = [];
-            $easeUploadedDocumentInstance['ease_user_id']=$seekerId[0]->_id;
-            $easeUploadedDocumentInstance['document_type']='profile';
-            $easeUploadedDocumentInstance['profile']=$profile;
-            $easeUploadedDocumentInstance['url']=$filePath;
-            $res = EaseUploadedDocument::store($easeUploadedDocumentInstance);
-        }
         $response=[];
         $response['status']='success';
         return json_encode($response);
