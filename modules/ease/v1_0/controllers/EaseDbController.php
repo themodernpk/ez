@@ -366,6 +366,7 @@ class EaseDbController extends BaseController
                 $table->foreign('review_to')->references('_id')->on('user')->onDelete('set null')->after('review_by');
                 $table->text('comment')->nullable();
                 $table->timestamp('comment_on')->nullable();
+                $table->string('approve')->nullable();
                 $table->double('rating')->nullable();
                 $table->integer('ease_service_request_id')->unsigned()->nullable();
                 $table->foreign('ease_service_request_id')->references('_id')->on('ease_service_requests')->onDelete('set null')->after('rating');

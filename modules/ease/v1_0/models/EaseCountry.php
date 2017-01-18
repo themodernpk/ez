@@ -38,7 +38,7 @@ class EaseCountry extends Eloquent
     }
     //------------------------------------------------------------
     public function ease_services() {
-        return $this->hasMany('App\EaseService');
+        return $this->hasMany('EaseService',"ease_country_id",'_id');
     }
     //------------------------------------------------------------
     public static function update_rules()

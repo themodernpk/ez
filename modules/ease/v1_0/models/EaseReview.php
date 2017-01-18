@@ -14,6 +14,7 @@ class EaseReview extends Eloquent
     protected $fillable = [
         'review_by',
         'review_to',
+        'approve',
         'slug',
         'comment',
         'comment_on',
@@ -121,9 +122,15 @@ class EaseReview extends Eloquent
         $model = $settings->model;
         if ($input == NULL) {
             $input = Input::all();
+            if(empty($input['approve'])){
+                $input['approve']="false";
+            }
         }
         if (!is_object($input)) {
             $input = (object)$input;
+            if(empty($input->approve)){
+                $input->approve="false";
+            }
         }
         //if _id is provided then find
         if (isset($input->_id) && !empty($input->_id)) {
@@ -172,6 +179,7 @@ class EaseReview extends Eloquent
             'review_by',
             'review_to',
             'slug',
+            'approve',
             'comment',
             'comment_on',
             'rating',

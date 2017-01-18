@@ -57,33 +57,11 @@ Route::group(array('before' => 'login','prefix' => 'api/service-request'),functi
 //API Ease-User
 Route::group(array('before' => 'login','prefix' =>"api/ease-user"),function(){
     Route::post('/checkcode',array('as'=>'post-reset-password','uses'=>'EaseApiUserController@checkCode'));
-});
-Route::group(array('before' => 'login','prefix' =>"api/ease-user"),function(){
     Route::post('/resendcode',array('as'=>'post-reset-password','uses'=>'EaseApiUserController@resendCode'));
-});
-Route::group(array('before' => 'login','prefix' =>"api/ease-user"),function(){
     Route::post('api/user/writetosupport',array('as'=>'post-write-to-support','uses'=>'EaseApiUserController@postWriteToSupport'));
-});
-Route::group(array('before' => 'login','prefix' =>"api/ease-user"),function(){
     Route::post('/forgot-password',array('as'=>'post-forgot-password','uses'=>'EaseApiUserController@postForgotPassword'));
-});
-Route::group(array('before' => 'login','prefix' =>"api/ease-user"),function(){
     Route::post('/reset-password',array('as'=>'post-reset-password','uses'=>'EaseApiUserController@postResetPassword'));
-});
-Route::group(array('before' => 'login','prefix'=>'api/ease-user'),function(){
     Route::post('/changepassword',array('as'=>'post-change-password','uses'=>'EaseApiUserController@postChangePassword'));
-});
-
-
-Route::group(array('before' => 'login','prefix' => 'api/user'),function() {
-    Route::post('{id}/update-profile',array('as' => 'post-update-profile','uses'=>'EaseApiUserController@postUpdateProfile'));
-    Route::post('/{id}/{need_only?}',array('as' => 'get-user','uses'=>'EaseApiUserController@getEaseUser'));
-    Route::get('{id}/verification/is-verified/{user_type?}',array('as'=>'is-user-verified','uses'=>'EaseApiUserController@isUserVerified'));
-    Route::get('{id}/verification/send-code/{email/mobile?}',array('as'=>'send-validation-code','uses' => 'EaseApiUserController@sendValidationCode'));
-    Route::get('/{id}/{user-type}/verification/has-verified/{verification_type?}',array('as'=>'has-user-verified','uses'=>'EaseApiUserController@hasUserVerified'));
-    Route::post('{id}/forgot-password',array('as'=>'post-forgot-password','uses'=>'EaseApiUserController@postForgetPassword'));
-    Route::post('{id}/reset-password',array('as'=>'post-reset-password','uses'=>'EaseApiUserController@postResetPassword'));
-    Route::post('{id}/change-paffssword',array('as'=>'post-change-password','uses'=>'EaseApiUserController@postChangePassword'));
     Route::post('/write-review-provider',array('as'=>'post-write-review','uses'=>'EaseApiUserController@postWriteReviewProvider'));
     Route::post('/write-review-seeker',array('as'=>'post-write-review','uses'=>'EaseApiUserController@postWriteReviewSeeker'));
     Route::post('{id}/write-report',array('as'=>'post-write-report','uses'=>'EaseApiUserController@postWriteReport'));
@@ -98,17 +76,6 @@ Route::get('/db/update', array('as' => 'bmb-db-update', 'uses' => 'EaseDbControl
 Route::group(array('before' => 'auth', 'prefix' => 'ease-admin'), function () {
 //----------DB Update
     Route::get('/db/reset', array('as' => 'bmb-db-reset', 'uses' => 'EaseDbController@reset'));
-//=========================================================================================================================
-    //ease user controller
-    /*Route::group(array('prefix' => 'user'), function () {
-        //----------Permission
-        Route::get('/index', array('as' => 'ease-user-index', 'uses' => 'EaseUserController@index'));
-        Route::any('/create', array('as' => 'ease-user-create', 'uses' => 'EaseUserController@create'));
-        Route::any('/read/{_id?}', array('as' => 'ease-user-read', 'uses' => 'EaseUserController@read'));
-        Route::any('/update/{_id?}', array('as' => 'ease-user-update', 'uses' => 'EaseUserController@update'));
-        Route::any('/delete/{_id?}', array('as' => 'ease-user-delete', 'uses' => 'EaseUserController@delete'));
-        Route::any('/bulk/action', array('as' => 'ease-user-bulk-action', 'uses' => 'EaseUserController@bulkAction'));
-    });*/
 //=========================================================================================================================
     //country controller
     Route::group(array('prefix' => 'country'), function () {

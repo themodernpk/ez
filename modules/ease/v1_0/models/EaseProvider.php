@@ -10,7 +10,6 @@ class EaseProvider extends Eloquent
     use SoftDeletingTrait;
     protected $dates = ['deleted_at'];
     protected $softDelete = true;
-
     protected $fillable = [
         'ease_user_id',
         'ease_service_id',
@@ -28,6 +27,7 @@ class EaseProvider extends Eloquent
         'modified_at',
         'deleted_at',
     ];
+
     public static $prefix = 'ease-provider';
     public static $table_name = 'ease_providers';
     public static $model = 'EaseProvider';
@@ -35,7 +35,32 @@ class EaseProvider extends Eloquent
     public static $rows = 25;
     public static $enable = false;
     public static $executor = true;
+
+    /**
+     * EaseProvider constructor.
+     * @param string $connection
+     */
+    /*public function __construct($connection)
+    {
+
+        $n=DB::table('ease_providers')->orderBy('id', 'desc')->first();
+        if(empty($n->id)){
+            $n=0;
+            $this->setRowNumber($n->id);
+            $this->primaryKey = $this->rowNumber+1;
+        }else{
+            $this->setRowNumber($n->id);
+            $this->primaryKey = $this->rowNumber+1;
+        }
+    }*/
     //------------------------------------------------------------
+    /**
+     * @param mixed $rowNumber
+     */
+    public function setRowNumber($rowNumber)
+    {
+        $this->rowNumber = $rowNumber;
+    }
     //------------------------------------------------------------
     public static function create_rules()
     {
@@ -63,7 +88,7 @@ class EaseProvider extends Eloquent
     //------------------------------------------------------------
     //------------------------------------------------------------
     public function ease_report_issues() {
-        return $this->hasMany('EaseReportIssue');
+        return $this->embedsMany('EaseReportIssue','_id','ease_provider_id');
     }
     //------------------------------------------------------------
     //------------------------------------------------------------
@@ -187,7 +212,6 @@ class EaseProvider extends Eloquent
                 $item->created_by = Auth::user()->id;
             }
         }
-        //$columns = Schema::getColumnListing($settings->table);
         //--------------------------------------------------------
         //inserting the names of the columns in the columns array
         //--------------------------------------------------------

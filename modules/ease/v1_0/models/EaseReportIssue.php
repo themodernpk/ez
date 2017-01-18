@@ -49,7 +49,7 @@ class EaseReportIssue extends Eloquent
     }
     //------------------------------------------------------------
     public function ease_provider() {
-        return $this->belongsTo('App\EaseProvider');
+        return $this->belongsTo('EaseProvider','ease_provider_id','_id');
     }
     //------------------------------------------------------------
     //------------------------------------------------------------

@@ -30,7 +30,7 @@ class EaseService extends Eloquent
     public static $executor = true;
     //------------------------------------------------------------
     public function ease_country() {
-        return $this->belongsTo('App/EaseCountry');
+        return $this->belongsTo('EaseCountry','_id','ease_country_id');
     }
     public function ease_provider_service(){
         return $this->embedsMany('EaseProviderService','_id','ease_service_id');
